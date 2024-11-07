@@ -29,5 +29,23 @@ namespace PokedexMAUI.Services
 
             return pokemonSpecies ?? new List<PokemonSpecies>();
         }
+
+        public async Task<List<PokemonSpecies>> GetAllPokemonSpeciesAsync(int limit)
+        {
+            var url = $"https://pokeapi.co/api/v2/pokemon?limit={limit}";
+            var response = await _httpClient.GetStringAsync(url).ConfigureAwait(false);
+            var json = JObject.Parse(response);
+
+            var pokemonSpecies = json["results"]?
+                .Select(p => new PokemonSpecies
+                {
+                    Name = (string?)p["name"] ?? "Unknown",
+                    Url = (string?)p["url"] ?? string.Empty
+                })
+                .OrderBy(p => p.Id)
+                .ToList();
+
+            return pokemonSpecies ?? new List<PokemonSpecies>();
+        }
     }
 }
