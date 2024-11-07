@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokedexMAUI.PokemonByGeneration"
-             Title="PokemonByGeneration">
+             Title="">
     <StackLayout>
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
@@ -11,7 +11,21 @@
                 <DataTemplate>
                     <!-- This StackLayout is each "page" in the CarouselView -->
                     <StackLayout VerticalOptions="FillAndExpand">
-                        <Label Text="{Binding Name}" FontSize="Large" HorizontalOptions="Center" />
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                            <Label
+                                FontFamily="MaterialIconsOutlined"
+                                Text="&#xe5cb;"
+                                FontSize="24"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+                            <Label Text="{Binding DisplayName}" FontSize="Large" HorizontalOptions="Center" />
+                            <Label
+                                FontFamily="MaterialIconsOutlined"
+                                Text="&#xe5cc;"
+                                FontSize="24"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+                        </HorizontalStackLayout>
 
                         <!-- CollectionView for Pokémon within each generation -->
                         <CollectionView ItemsSource="{Binding PokemonCollection}" VerticalOptions="FillAndExpand">

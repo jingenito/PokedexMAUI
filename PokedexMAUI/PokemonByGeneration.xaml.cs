@@ -81,6 +81,8 @@ public partial class PokemonByGeneration : ContentPage
     {
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
+        public string DisplayName => $"{Name} {Id}";
+
         public int MinSpeciesId { get; set; } = 0;
         public int MaxSpeciesId { get; set; } = 0;
         public ObservableCollection<PokemonSpecies> PokemonCollection { get; set; } = new ObservableCollection<PokemonSpecies>();
