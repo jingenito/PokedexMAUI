@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokedexMAUI", "PokedexMAUI.csproj", "{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5210CFF0-31E2-4BC8-8E8B-6D4A26B03753}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38CCF11A-9DD8-4A89-8F8A-DBDCD3611B66}
+	EndGlobalSection
+EndGlobal
