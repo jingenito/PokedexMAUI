@@ -13,6 +13,9 @@ namespace PokedexMAUI
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("MaterialSymbolsSharp.ttf", "MaterialIconsSharp");
+                    fonts.AddFont("MaterialSymbolsRounded.ttf", "MaterialIconsRounded");
+                    fonts.AddFont("MaterialSymbolsOutlined.ttf", "MaterialIconsOutlined");
                 });
 
 #if DEBUG
