@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using PokedexMAUI.Services;
 
 namespace PokedexMAUI
 {
@@ -18,8 +19,13 @@ namespace PokedexMAUI
                     fonts.AddFont("MaterialSymbolsOutlined.ttf", "MaterialIconsOutlined");
                 });
 
+            // Register the PokemonService with dependency injection
+            builder.Services.AddSingleton<IPokemonService, PokemonService>();
+            builder.Services.AddSingleton<HttpClient>();
+            builder.Services.AddTransient<PokemonByGeneration>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

@@ -1,5 +1,5 @@
-using Newtonsoft.Json.Linq;
 using PokedexMAUI.Models;
+using PokedexMAUI.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -7,11 +7,16 @@ namespace PokedexMAUI;
 
 public partial class PokemonByGeneration : ContentPage
 {
+    private readonly IPokemonService _pokemonService;
+
     public ObservableCollection<PokemonSpecies> PokemonCollection { get; set; } = new ObservableCollection<PokemonSpecies>();
 
-    public PokemonByGeneration()
+    public PokemonByGeneration(IPokemonService pokemonService)
 	{
 		InitializeComponent();
+        _pokemonService = pokemonService;
+
+        //set the binding context for the UI controls
         BindingContext = this;
 	}
 
@@ -23,7 +28,9 @@ public partial class PokemonByGeneration : ContentPage
 
         try
         {
-            var pokemonSpecies = await GetPokemonByGenerationAsync(1);
+            var pokemonSpecies = await _pokemonService.GetPokemonSpeciesByGenerationAsync(1);
+
+            //update the Pokemon collection
             PokemonCollection.Clear();
             foreach (var pokemon in pokemonSpecies)
             {
@@ -37,27 +44,6 @@ public partial class PokemonByGeneration : ContentPage
         finally
         {
             IsBusy = false;
-        }
-    }
-
-    public async Task<List<PokemonSpecies>> GetPokemonByGenerationAsync(int generationId)
-    {
-        using (var httpClient = new HttpClient())
-        {
-            var url = $"https://pokeapi.co/api/v2/generation/{generationId}/";
-            var response = await httpClient.GetStringAsync(url);
-            var json = JObject.Parse(response);
-
-            var pokemonSpecies = json["pokemon_species"]?
-                .Select(p => new PokemonSpecies
-                {
-                    Name = (string?)p["name"] ?? "Unkown",
-                    Url = (string?)p["url"] ?? string.Empty
-                })
-                .OrderBy(p => p.Id) // Optional: order by ID
-                .ToList();
-
-            return pokemonSpecies ?? new List<PokemonSpecies>();
         }
     }
 }
