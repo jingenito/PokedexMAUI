@@ -1,4 +1,6 @@
-﻿namespace PokedexMAUI.Extensions
+﻿using System.Xml.Linq;
+
+namespace PokedexMAUI.Extensions
 {
     public static class StringExtensions
     {
@@ -17,6 +19,15 @@
             }
 
             return string.Join(" ", words);
+        }
+
+        public static string ToPokemonName(this string str)
+        {
+            if (str.EndsWith("-f"))
+                return str.Replace("-f", " Female");
+            else if (str.EndsWith("-m"))
+                return str.Replace("-m", " Male");
+            return str;
         }
     }
 }

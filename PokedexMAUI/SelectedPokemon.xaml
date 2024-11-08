@@ -63,6 +63,7 @@
                                    WidthRequest="100">
                                 <Label Text="{Binding Name}" 
                                        FontSize="Medium" 
+                                       FontAttributes="Bold"
                                        TextColor="{Binding ForeColor}" 
                                        HorizontalOptions="CenterAndExpand"/>
                             </Frame>
