@@ -3,46 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokedexMAUI.PokemonByGeneration"
              Title="">
-    <StackLayout>
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+    <AbsoluteLayout>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                           IsVisible="{Binding IsBusy}"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           AbsoluteLayout.LayoutBounds="0.5,0.5"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
 
-        <CarouselView ItemsSource="{Binding GenerationCollection}" VerticalOptions="FillAndExpand" >
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout VerticalOptions="FillAndExpand">
-                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                            <Label
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <CarouselView ItemsSource="{Binding GenerationCollection}" VerticalOptions="FillAndExpand" >
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="FillAndExpand">
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                                <Label
                                 FontFamily="MaterialIconsOutlined"
                                 Text="&#xe5cb;"
                                 FontSize="24"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center" />
-                            <Label Text="{Binding DisplayName}" FontSize="Large" HorizontalOptions="Center" />
-                            <Label
+                                <Label Text="{Binding DisplayName}" FontSize="Large" HorizontalOptions="Center" />
+                                <Label
                                 FontFamily="MaterialIconsOutlined"
                                 Text="&#xe5cc;"
                                 FontSize="24"
                                 VerticalOptions="Center"
                                 HorizontalOptions="Center" />
-                        </HorizontalStackLayout>
+                            </HorizontalStackLayout>
 
-                        <CollectionView ItemsSource="{Binding PokemonCollection}" VerticalOptions="FillAndExpand">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout Orientation="Horizontal" Padding="10">
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnPokemonTapped" CommandParameter="{Binding .}" />
-                                        </StackLayout.GestureRecognizers>
-                                        
-                                        <Image Source="{Binding OfficialArtworkUrl}" WidthRequest="80" HeightRequest="80"/>
-                                        <Label Text="{Binding Title}" VerticalOptions="Center" FontSize="Medium"/>
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </StackLayout>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
-    </StackLayout>
+                            <CollectionView ItemsSource="{Binding PokemonCollection}" VerticalOptions="FillAndExpand">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal" Padding="10">
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnPokemonTapped" CommandParameter="{Binding .}" />
+                                            </StackLayout.GestureRecognizers>
+
+                                            <Image Source="{Binding OfficialArtworkUrl}" WidthRequest="80" HeightRequest="80"/>
+                                            <Label Text="{Binding Title}" VerticalOptions="Center" FontSize="Medium"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>
