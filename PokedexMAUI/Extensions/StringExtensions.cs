@@ -9,7 +9,7 @@ namespace PokedexMAUI.Extensions
             if (string.IsNullOrWhiteSpace(str))
                 return str;
 
-            var words = str.Split(' ');
+            var words = str.Replace("-", " ").Split(" ");
             for (int i = 0; i < words.Length; i++)
             {
                 if (words[i].Length > 0)
