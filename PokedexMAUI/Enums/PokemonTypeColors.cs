@@ -39,6 +39,8 @@ namespace PokedexMAUI.Enums
         [Description("#B7B7CE")]
         Steel,
         [Description("#D685AD")]
-        Fairy
+        Fairy,
+        [Description("#F00")]
+        Error
     }
 }

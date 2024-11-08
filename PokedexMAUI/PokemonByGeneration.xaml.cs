@@ -77,6 +77,37 @@ public partial class PokemonByGeneration : ContentPage
         }
     }
 
+    protected async void OnPokemonTapped(object sender, EventArgs e)
+    {
+        if (sender is StackLayout layout && layout.BindingContext is PokemonSpecies selectedPokemon)
+        {
+            // Navigate to the detail page or handle the selected Pokemon item
+            if (selectedPokemon != null)
+            {
+                IsBusy = true;
+
+                try
+                {
+                    var pokemonInfo = await _pokemonService.GetPokemonAsync(selectedPokemon.Id);
+                    if (pokemonInfo != null)
+                    {
+                        pokemonInfo.OfficialArtworkUrl = selectedPokemon.OfficialArtworkUrl;
+                        await Navigation.PushAsync(new SelectedPokemon(pokemonInfo));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
+            }
+        }
+
+    }
+
     public class Generation
     {
         public int Id { get; set; } = 0;

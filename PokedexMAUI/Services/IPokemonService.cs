@@ -6,5 +6,6 @@ namespace PokedexMAUI.Services
     {
         Task<List<PokemonSpecies>> GetPokemonSpeciesByGenerationAsync(int generationId);
         Task<List<PokemonSpecies>> GetAllPokemonSpeciesAsync(int limit);
+        Task<Pokemon> GetPokemonAsync(int id);
     }
 }

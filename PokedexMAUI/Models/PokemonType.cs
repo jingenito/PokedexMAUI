@@ -5,8 +5,8 @@ namespace PokedexMAUI.Models
 {
     public class PokemonType
     {
-        PokemonTypeColors PokemonTypeColor { get; set; }
-        string Name => PokemonTypeColor.ToString();
-        string Color => PokemonTypeColor.Description();
+        public PokemonTypeColors PokemonTypeColor { get; set; }
+        public string Name => PokemonTypeColor.ToString();
+        public string Color => PokemonTypeColor.Description();
     }
 }

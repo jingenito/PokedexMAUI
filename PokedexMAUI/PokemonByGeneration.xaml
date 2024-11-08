@@ -6,10 +6,9 @@
     <StackLayout>
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-        <CarouselView ItemsSource="{Binding GenerationCollection}" VerticalOptions="FillAndExpand">
+        <CarouselView ItemsSource="{Binding GenerationCollection}" VerticalOptions="FillAndExpand" >
             <CarouselView.ItemTemplate>
                 <DataTemplate>
-                    <!-- This StackLayout is each "page" in the CarouselView -->
                     <StackLayout VerticalOptions="FillAndExpand">
                         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
                             <Label
@@ -27,11 +26,14 @@
                                 HorizontalOptions="Center" />
                         </HorizontalStackLayout>
 
-                        <!-- CollectionView for Pokémon within each generation -->
                         <CollectionView ItemsSource="{Binding PokemonCollection}" VerticalOptions="FillAndExpand">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Orientation="Horizontal" Padding="10">
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnPokemonTapped" CommandParameter="{Binding .}" />
+                                        </StackLayout.GestureRecognizers>
+                                        
                                         <Image Source="{Binding OfficialArtworkUrl}" WidthRequest="80" HeightRequest="80"/>
                                         <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="Medium"/>
                                     </StackLayout>

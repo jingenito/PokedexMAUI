@@ -1,12 +1,91 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PokedexMAUI.SelectedPokemon"
-             Title="SelectedPokemon">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="PokedexMAUI.SelectedPokemon">
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="{Binding Title}"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Image Source="{Binding OfficialArtworkUrl}"
+                   HeightRequest="200"
+                   HorizontalOptions="Center"
+                   Aspect="AspectFit" />
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                <Label Text="Height:"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding HeightM, StringFormat='{0:F3} m'}"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                <Label Text="Weight:"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding WeightKg, StringFormat='{0:F3} kg'}"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                <CollectionView ItemsSource="{Binding Types}" ItemsLayout="HorizontalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="{Binding Color}" 
+                                   CornerRadius="10" 
+                                   Padding="5" 
+                                   Margin="5"
+                                   WidthRequest="100">
+                                <Label Text="{Binding Name}" 
+                                       FontSize="Medium" 
+                                       TextColor="Black" 
+                                       HorizontalOptions="CenterAndExpand"/>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout VerticalOptions="FillAndExpand">
+                <Label Text="Base Stats"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                
+                <CollectionView ItemsSource="{Binding BaseStats}" ItemsLayout="VerticalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                                <Label Text="{Binding Name}" FontSize="Medium" />
+                                <Label Text="{Binding Value}" FontSize="Medium" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label Text="Starting Abilities"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                
+                <CollectionView ItemsSource="{Binding BaseAbilities}" ItemsLayout="VerticalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="CenterAndExpand" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
