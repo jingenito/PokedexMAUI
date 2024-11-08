@@ -23,7 +23,7 @@ namespace PokedexMAUI.Services
             var pokemonSpecies = json["pokemon_species"]?
                 .Select(p => new PokemonSpecies
                 {
-                    Name = ((string?)p["name"] ?? "Unknown").ToPokemonName().ToTitleCase(),
+                    Name = ((string?)p["name"] ?? "Unknown").ToPokemonName().Replace("-", " ").ToTitleCase(),
                     Url = (string?)p["url"] ?? string.Empty
                 })
                 .OrderBy(p => p.Id)
@@ -41,7 +41,7 @@ namespace PokedexMAUI.Services
             var pokemonSpecies = json["results"]?
                 .Select(p => new PokemonSpecies
                 {
-                    Name = ((string?)p["name"] ?? "Unknown").ToPokemonName().ToTitleCase(),
+                    Name = ((string?)p["name"] ?? "Unknown").ToPokemonName().Replace("-", " ").ToTitleCase(),
                     Url = (string?)p["url"] ?? string.Empty
                 })
                 .OrderBy(p => p.Id)
@@ -59,7 +59,7 @@ namespace PokedexMAUI.Services
             var pokemon = new Pokemon
             {
                 Id = json["id"]?.Value<int>() ?? 0,
-                Name = ((string?)json["name"] ?? "Unkown").ToPokemonName().ToTitleCase(),
+                Name = ((string?)json["name"] ?? "Unkown").ToPokemonName().Replace("-", " ").ToTitleCase(),
                 HeightHm = json["height"]?.Value<int>() ?? 0,
                 WeightHg = json["weight"]?.Value<int>() ?? 0,
                 BaseAbilities = ParseAbilities(json["abilities"] as JArray ?? new JArray()),
