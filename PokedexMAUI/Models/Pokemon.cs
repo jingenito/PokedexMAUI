@@ -3,14 +3,14 @@
     public class Pokemon
     {
         public int Id { get; set; } = 0;
-        public string PokedexNumber => $"#{Id.ToString("D4")}";
         public string Name { get; set; } = string.Empty;
-        public string Title => $"{Name} {PokedexNumber}";
+
+        public string Title => PokemonSpecies.GetTitle(Name, Id);
 
         public int HeightHm { get; set; } = 0;
-        public double HeightM => HeightHm * 0.1;
+        public string Height => (HeightHm * 0.1).ToString("0.###") + " m";
         public int WeightHg { get; set; } = 0;
-        public double WeightKg => WeightHg * 0.1;
+        public string Weight => (WeightHg * 0.1).ToString("0.###") + " kg";
 
         public List<PokemonAbility> BaseAbilities { get; set; } = new List<PokemonAbility>();
         public List<PokemonStat> BaseStats { get; set; } = new List<PokemonStat>();

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PokedexMAUI.SelectedPokemon">
     <ScrollView>
-        <StackLayout Padding="20" Spacing="15">
+        <StackLayout Spacing="15">
             <Label Text="{Binding Title}"
                    FontSize="Large"
                    FontAttributes="Bold"
@@ -13,40 +13,57 @@
                    HorizontalOptions="Center"
                    Aspect="AspectFit" />
 
-            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+            <Grid HorizontalOptions="CenterAndExpand" ColumnSpacing="10" RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Height Row -->
                 <Label Text="Height:"
                        FontSize="Large"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center" />
-                <Label Text="{Binding HeightM, StringFormat='{0:F3} m'}"
+                       HorizontalOptions="End"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+                <Label Text="{Binding Height}"
                        FontSize="Large"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center" />
-            </HorizontalStackLayout>
+                       HorizontalOptions="Start"
+                       Grid.Row="0"
+                       Grid.Column="1" />
 
-            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                <!-- Weight Row -->
                 <Label Text="Weight:"
                        FontSize="Large"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center" />
-                <Label Text="{Binding WeightKg, StringFormat='{0:F3} kg'}"
+                       HorizontalOptions="End"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+                <Label Text="{Binding Weight}"
                        FontSize="Large"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center" />
-            </HorizontalStackLayout>
+                       HorizontalOptions="Start"
+                       Grid.Row="1"
+                       Grid.Column="1" />
+            </Grid>
 
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
                 <CollectionView ItemsSource="{Binding Types}" ItemsLayout="HorizontalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BackgroundColor="{Binding Color}" 
+                            <Frame BackgroundColor="{Binding Color}"
                                    CornerRadius="10" 
                                    Padding="5" 
                                    Margin="5"
                                    WidthRequest="100">
                                 <Label Text="{Binding Name}" 
                                        FontSize="Medium" 
-                                       TextColor="Black" 
+                                       TextColor="{Binding ForeColor}" 
                                        HorizontalOptions="CenterAndExpand"/>
                             </Frame>
                         </DataTemplate>
@@ -63,10 +80,10 @@
                 <CollectionView ItemsSource="{Binding BaseStats}" ItemsLayout="VerticalList">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
-                                <Label Text="{Binding Name}" FontSize="Medium" />
-                                <Label Text="{Binding Value}" FontSize="Medium" />
-                            </HorizontalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="CenterAndExpand" Spacing="2">
+                                <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="Center" />
+                                <ProgressBar Progress="{Binding Percentage}" HeightRequest="10" WidthRequest="200" />
+                            </VerticalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

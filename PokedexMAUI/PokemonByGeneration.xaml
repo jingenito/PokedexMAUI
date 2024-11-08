@@ -35,7 +35,7 @@
                                         </StackLayout.GestureRecognizers>
                                         
                                         <Image Source="{Binding OfficialArtworkUrl}" WidthRequest="80" HeightRequest="80"/>
-                                        <Label Text="{Binding Name}" VerticalOptions="Center" FontSize="Medium"/>
+                                        <Label Text="{Binding Title}" VerticalOptions="Center" FontSize="Medium"/>
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

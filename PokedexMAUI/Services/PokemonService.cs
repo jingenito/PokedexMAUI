@@ -80,7 +80,7 @@ namespace PokedexMAUI.Services
                 {
                     abilities.Add(new PokemonAbility
                     {
-                        Name = (string?)ability["ability"]?["name"] ?? "Unknown",
+                        Name = ((string?)ability["ability"]?["name"] ?? "Unknown").Replace("-", " ").ToTitleCase(),
                     });
                 }
             }
@@ -116,10 +116,15 @@ namespace PokedexMAUI.Services
             {
                 foreach (var stat in statsArray)
                 {
+                    PokemonStatTypes type;
+                    if (!Enum.TryParse(((string?)stat["stat"]?["name"] ?? "error").Replace("-", ""), true, out type))
+                    {
+                        type = PokemonStatTypes.Error;
+                    }
                     stats.Add(new PokemonStat
                     {
-                        Value = stat["base_stat"]?.Value<int>() ?? 0,
-                        Name = (string?)stat["stat"]?["name"] ?? string.Empty
+                        Type = type,
+                        Value = stat["base_stat"]?.Value<int>() ?? 0
                     });
                 }
             }
